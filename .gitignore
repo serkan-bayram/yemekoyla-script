@@ -1,0 +1,5 @@
+venv
+telegram_token
+node_modules
+.env
+.vscode
