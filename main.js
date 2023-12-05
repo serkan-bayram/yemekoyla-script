@@ -19,19 +19,31 @@ app.post("/save-food", async (req, res) => {
       process.env.dbPassword
     );
 
+    const url = `http://51.12.208.57:8080/${receivedData.menu_date}.jpeg`;
+
     const data = {
-      url: `http://51.12.208.57:8080/${receivedData.menu_date}.jpeg`,
+      url: url,
       menu: JSON.stringify(receivedData.foods),
       date: receivedData.menu_date,
     };
 
-    const record = await pb.collection("menus").create(data);
+    try {
+      // If this not throws an error, that means we already saved the menu_date so we will not create it, we will update it
+      const lastSavedItem = await pb
+        .collection("menus")
+        .getFirstListItem(`url="${url}"`);
+
+      const record = await pb
+        .collection("menus")
+        .update(lastSavedItem.id, data);
+      res.json({ message: "Menu is updated." });
+    } catch (error) {
+      const record = await pb.collection("menus").create(data);
+      res.json({ message: "Creating the menu." });
+    }
   } catch (error) {
     res.json({ message: "Error on /save-food" });
   }
-
-  // Send a response
-  res.json({ message: "POST request received and processed." });
 });
 
 app.listen(port, () => {

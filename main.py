@@ -7,7 +7,6 @@ import os
 import time
 from copy_to_serve_dir import copy
 from save_to_db import send_request
-import sys
 import shutil
 
 
