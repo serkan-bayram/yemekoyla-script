@@ -1,0 +1,9 @@
+Mercimek Çorba
+
+Tas Kebabı
+
+Pirinç Pilavı
+
+Meyve
+
+Yemek bitmesi durumunda muadil yemek menüsü olarak; Mercimek Çorba, Tas Kebabı, Bulgur Pilavı, Meyve verilebilir.
