@@ -60,11 +60,35 @@ def get_menu_url():
 
     return menu_url
 
+    
 
 def get_menu_date():
-    menu_date = CONTAINER.find_all("p")[1].getText()
+        
+    menu_date = CONTAINER.parent.find_all("small")[1].getText()
 
-    formatted_date = menu_date.replace(".", "-")
+    aylar = {
+        'Ocak': '01',
+        'Şubat': '02',
+        'Mart': '03',
+        'Nisan': '04',
+        'Mayıs': '05',
+        'Haziran': '06',
+        'Temmuz': '07',
+        'Ağustos': '08',
+        'Eylül': '09',
+        'Ekim': '10',
+        'Kasım': '11',
+        'Aralık': '12'
+    }
+
+    # Tarih metnini ayrıştırma
+    splitted = menu_date.split()
+    day = splitted[0]
+    month = aylar[splitted[1]]
+    year = splitted[2]
+
+    # Yeni tarih formatı
+    formatted_date = f"{day}-{month}-{year}"
 
     return formatted_date
 
