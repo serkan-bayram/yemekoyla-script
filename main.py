@@ -6,6 +6,7 @@ import wget
 import os
 import time
 from copy_to_serve_dir import copy
+from copy_data_folder_to_serve_dir import copy_data
 from save_to_db import send_request
 import shutil
 
@@ -187,6 +188,7 @@ def main():
 
             if did_we_save(menu_date):
                 copy()
+                copy_data()
                 send_request(get_foods(menu_date), menu_date)
 
         except Exception as e:
